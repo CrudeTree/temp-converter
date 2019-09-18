@@ -2,6 +2,7 @@ package edu.cnm.deepdive;
 
 import java.util.*;
 import java.lang.Math;
+import org.w3c.dom.ls.LSOutput;
 
 public class TempConverter {
 
@@ -11,19 +12,21 @@ public class TempConverter {
       convert(input);
     }
 
-
   private static void convert(Scanner scanner) {
-    String line;
-    while (!(line  = scanner.nextLine().trim()).isEmpty()) {
-      char finalChar = line.toUpperCase().charAt(line.length() - 1);
-      if (finalChar == 'C') {
-          double celsius = parseTemperature(line);
-          System.out.printf("%.3fF%n", celsiusToFahrenheit(celsius));
+    try {
+      String line;
+      while (!(line  = scanner.nextLine().trim()).isEmpty()) {
+        char finalChar = line.toUpperCase().charAt(line.length() - 1);
+        if (finalChar == 'C') {
+            double celsius = parseTemperature(line);
+            System.out.printf("%.3fF%n", celsiusToFahrenheit(celsius));
 
-      } else if (finalChar == 'F') {
-          double fahrenheit = parseTemperature(line);
-          System.out.printf("%.3fC%n", fahrenheitToCelsius(fahrenheit));
+        } else if (finalChar == 'F') {
+            double fahrenheit = parseTemperature(line);
+            System.out.printf("%.3fC%n", fahrenheitToCelsius(fahrenheit));
+        }
       }
+    } catch (NoSuchElementException expected) {
     }
   }
 
